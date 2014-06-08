@@ -16,6 +16,10 @@ echo "stopping nginx . . ."
 docker kill dockerana-nginx >/dev/null 2>&1
 docker rm dockerana-nginx >/dev/null 2>&1
 
+echo "stopping statsd . . ."
+docker kill dockerana-statsd >/dev/null 2>&1
+docker rm dockerana-statsd >/dev/null 2>&1
+
 echo "stopping dockerana . . ."
 docker kill dockerana >/dev/null 2>&1
 docker rm dockerana >/dev/null 2>&1
