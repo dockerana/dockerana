@@ -4,6 +4,10 @@ echo "stopping elasticsearch . . ."
 docker kill dockerana-elasticsearch >/dev/null 2>&1
 docker rm dockerana-elasticsearch >/dev/null 2>&1
 
+echo "stopping carbon . . ."
+docker kill dockerana-carbon >/dev/null 2>&1
+docker rm dockerana-carbon >/dev/null 2>&1
+
 echo "stopping graphite . . ."
 docker kill dockerana-graphite >/dev/null 2>&1
 docker rm dockerana-graphite >/dev/null 2>&1
