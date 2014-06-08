@@ -1,3 +1,9 @@
+events implemented:
+
+* docker.host.loadavg.{1,5,10}-min
+
+todo/scratch:
+
 overall gauge of # of events/second
 
 event gauge by container vs dockerd vs host
