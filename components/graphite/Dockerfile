@@ -4,7 +4,6 @@ MAINTAINER Charlie Lewis <charliel@lab41.org>
 RUN apt-get -y update
 RUN apt-get -y install git \
                        gunicorn \
-                       nginx-light \
                        python-django-tagging \
                        python-simplejson \
                        python-memcache \
@@ -40,12 +39,11 @@ RUN chmod 0775 /opt/graphite/storage /opt/graphite/storage/whisper
 RUN chmod 0664 /opt/graphite/storage/graphite.db
 RUN cd /opt/graphite/webapp/graphite && python manage.py syncdb --noinput
 
-ADD nginx.conf /etc/nginx/nginx.conf
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 VOLUME ["/opt/graphite/storage/whisper"]
 VOLUME ["/var/lib/log/supervisor"]
 
-EXPOSE 80 2003 2004 7002 8125/udp
+EXPOSE 2003 2004 7002 8000 8125/udp
 
 CMD ["/usr/bin/supervisord"]

@@ -9,5 +9,5 @@ To run:
 ```
 docker run -d \
            -p 9200:9200 \
-           --name elasticsearch schvin/elasticsearch
+           --name dockerana-elasticsearch schvin/elasticsearch
 ```
