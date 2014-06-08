@@ -1,17 +1,17 @@
 dockerana
 =========
 
-pitch:
+Pitch:
 
 <img src="http://thecabin.net/sites/default/files/bigfoot.jpg">
 
-initial setup :
+#### Initial setup :
 
 * disclaimer about logs & disk space (upstart will rotate/etc; but growth of backend, etc.)
 
-ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):
+Ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):
 
-official install from http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit
+Official install from http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit
 
 ```
 sudo apt-get update
