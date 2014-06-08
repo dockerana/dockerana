@@ -71,6 +71,6 @@ To stop:
 
 Screenshots:
 
-<img src="documentation/screenshots/1.png">
-<img src="documentation/screenshots/2.png">
-<img src="documentation/screenshots/3.png">
+<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/1.png">
+<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/2.png">
+<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/3.png">
