@@ -3,8 +3,7 @@ FIXME need to define gauge vs counters etc
 ## Ad hoc events implemented:
 
 * docker.event.recorded (check)
-
-## Periodic events implemented:
+# Periodic events implemented:
 
 * docker.host.loadavg.{1,5,10}-min
 * docker.host.processes.active and .total
@@ -306,91 +305,19 @@ semantic match miss = 0
 null node hit= 15533
 skipped node resize = 0
 
-$ cat /proc/net/snmp6
-Ip6InReceives                           888
-Ip6InHdrErrors                          0
-Ip6InTooBigErrors                       0
-Ip6InNoRoutes                           3
-Ip6InAddrErrors                         0
-Ip6InUnknownProtos                      0
-Ip6InTruncatedPkts                      0
-Ip6InDiscards                           0
-Ip6InDelivers                           0
-Ip6OutForwDatagrams                     0
-Ip6OutRequests                          818
-Ip6OutDiscards                          0
-Ip6OutNoRoutes                          12
-Ip6ReasmTimeout                         0
-Ip6ReasmReqds                           0
-Ip6ReasmOKs                             0
-Ip6ReasmFails                           0
-Ip6FragOKs                              0
-Ip6FragFails                            0
-Ip6FragCreates                          0
-Ip6InMcastPkts                          885
-Ip6OutMcastPkts                         1260
-Ip6InOctets                             60892
-Ip6OutOctets                            55520
-Ip6InMcastOctets                        60676
-Ip6OutMcastOctets                       89112
-Ip6InBcastOctets                        0
-Ip6OutBcastOctets                       0
-Ip6InNoECTPkts                          888
-Ip6InECT1Pkts                           0
-Ip6InECT0Pkts                           0
-Ip6InCEPkts                             0
-Icmp6InMsgs                             0
-Icmp6InErrors                           0
-Icmp6OutMsgs                            818
-Icmp6OutErrors                          0
-Icmp6InCsumErrors                       0
-Icmp6InDestUnreachs                     0
-Icmp6InPktTooBigs                       0
-Icmp6InTimeExcds                        0
-Icmp6InParmProblems                     0
-Icmp6InEchos                            0
-Icmp6InEchoReplies                      0
-Icmp6InGroupMembQueries                 0
-Icmp6InGroupMembResponses               0
-Icmp6InGroupMembReductions              0
-Icmp6InRouterSolicits                   0
-Icmp6InRouterAdvertisements             0
-Icmp6InNeighborSolicits                 0
-Icmp6InNeighborAdvertisements           0
-Icmp6InRedirects                        0
-Icmp6InMLDv2Reports                     0
-Icmp6OutDestUnreachs                    0
-Icmp6OutPktTooBigs                      0
-Icmp6OutTimeExcds                       0
-Icmp6OutParmProblems                    0
-Icmp6OutEchos                           0
-Icmp6OutEchoReplies                     0
-Icmp6OutGroupMembQueries                0
-Icmp6OutGroupMembResponses              0
-Icmp6OutGroupMembReductions             0
-Icmp6OutRouterSolicits                  267
-Icmp6OutRouterAdvertisements            0
-Icmp6OutNeighborSolicits                109
-Icmp6OutNeighborAdvertisements          0
-Icmp6OutRedirects                       0
-Icmp6OutMLDv2Reports                    442
-Icmp6OutType133                         267
-Icmp6OutType135                         109
-Icmp6OutType143                         442
-Udp6InDatagrams                         0
-Udp6NoPorts                             0
-Udp6InErrors                            0
-Udp6OutDatagrams                        0
-Udp6RcvbufErrors                        0
-Udp6SndbufErrors                        0
-Udp6InCsumErrors                        0
-UdpLite6InDatagrams                     0
-UdpLite6NoPorts                         0
-UdpLite6InErrors                        0
-UdpLite6OutDatagrams                    0
-UdpLite6RcvbufErrors                    0
-UdpLite6SndbufErrors                    0
-UdpLite6InCsumErrors                    0
+$ cat /proc/net/dev
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+veth1514: 86839819  616603    0    0    0     0          0         0 219518280  699440    0    0    0     0       0          0
+veth19ba: 5705914    3021    0    0    0     0          0         0   329555    3954    0    0    0     0       0          0
+vetha0f6:  349128    3597    0    0    0     0          0         0   966360    1941    0    0    0     0       0          0
+vethe487: 15388827  137030    0    0    0     0          0         0 13918934  137523    0    0    0     0       0          0
+  eth0: 1550727372 1527426    0    0    0     0          0         0 210346084  582303    0    0    0     0       0          0
+vethc198: 16836644  143603    0    0    0     0          0         0 15350057  144652    0    0    0     0       0          0
+    lo:     756      14    0    0    0     0          0         0      756      14    0    0    0     0       0          0
+veth19b6:  244647    1051    0    0    0     0          0         0   169587    2464    0    0    0     0       0          0
+veth0e5d: 210810217  652852    0    0    0     0          0         0 40912135  574606    0    0    0     0       0          0
+docker0: 71133431   83522    0    0    0     0          0         0 416505167   97805    0    0    0     0       0          0
 
 $ cat /proc/stat
 cpu  90079 4992 141481 2043232 342053 1719 0 138512 0 0
