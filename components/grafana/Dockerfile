@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:trusty
 MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
@@ -81,6 +81,6 @@ VOLUME ["/opt/graphite/storage/whisper"]
 VOLUME ["/var/lib/log/supervisor"]
 
 # graphite/grafana/carbon[3]/statsd[2]
-EXPOSE 80 81 2003 2004 7002 8125/udp 8126 
+EXPOSE 80 81 2003 2004 7002 8125/udp 8126
 
 CMD ["/usr/bin/supervisord"]
