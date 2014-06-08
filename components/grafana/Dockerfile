@@ -27,6 +27,6 @@ ADD ./dashboards/white-theme.json /src/grafana/app/dashboards/white-theme.json
 
 WORKDIR /src/grafana
 
-EXPOSE 8000
+EXPOSE 8081
 
-CMD ["python", "-m", "SimpleHTTPServer"]
+CMD ["python", "-m", "SimpleHTTPServer", "8081"]
