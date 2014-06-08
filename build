@@ -1,1 +1,19 @@
-FIXME
+#!/bin/bash
+
+echo
+echo -e "\033[1mThis might time a little while . . . go grab a beer.\033[0m"
+echo
+sleep 3
+tput sgr0
+
+cd components/elasticsearch
+docker build -t schvin/elasticsearch .
+
+cd ../../components/graphite
+docker build -t schvin/graphite .
+
+cd ../../components/grafana
+docker build -t schvin/grafana .
+
+echo; echo
+echo -e "\033[1mOk! You're ready to start dockerana.\033[0m"
