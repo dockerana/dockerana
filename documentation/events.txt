@@ -1,8 +1,17 @@
-events implemented:
+FIXME need to define gauge vs counters etc
+
+## Ad hoc events implemented:
+
+* docker.event.recorded (check)
+
+## Periodic events implemented:
 
 * docker.host.loadavg.{1,5,10}-min
+* docker.host.processes.active and .total
+* docker.host.io (FIXME needs to have disks identified by container, and host, instead of 'dm/xvd/etc')
+* docker.host.cpu
 
-todo/scratch:
+## Todo/scratch:
 
 overall gauge of # of events/second
 
@@ -18,7 +27,7 @@ count of images
 
 network interface traffic by container and host
 
-process table (by container, or overall total?)
+process table (by container
 
 usual proc data for host (cpu, mem used/overall, io, etc.)
 
@@ -68,9 +77,6 @@ HugePages_Surp:        0
 Hugepagesize:       2048 kB
 DirectMap4k:       47104 kB
 DirectMap2M:     3885056 kB
-
-$ cat /proc/loadavg
-0.50 0.86 1.03 4/305 12340
 
 $ cat /proc/net/netstat 
 TcpExt: SyncookiesSent SyncookiesRecv SyncookiesFailed EmbryonicRsts PruneCalled RcvPruned OfoPruned OutOfWindowIcmps LockDroppedIcmps ArpFilter TW TWRecycled TWKilled PAWSPassive PAWSActive PAWSEstab DelayedACKs DelayedACKLocked DelayedACKLost ListenOverflows ListenDrops TCPPrequeued TCPDirectCopyFromBacklog TCPDirectCopyFromPrequeue TCPPrequeueDropped TCPHPHits TCPHPHitsToUser TCPPureAcks TCPHPAcks TCPRenoRecovery TCPSackRecovery TCPSACKReneging TCPFACKReorder TCPSACKReorder TCPRenoReorder TCPTSReorder TCPFullUndo TCPPartialUndo TCPDSACKUndo TCPLossUndo TCPLostRetransmit TCPRenoFailures TCPSackFailures TCPLossFailures TCPFastRetrans TCPForwardRetrans TCPSlowStartRetrans TCPTimeouts TCPLossProbes TCPLossProbeRecovery TCPRenoRecoveryFail TCPSackRecoveryFail TCPSchedulerFailed TCPRcvCollapsed TCPDSACKOldSent TCPDSACKOfoSent TCPDSACKRecv TCPDSACKOfoRecv TCPAbortOnData TCPAbortOnClose TCPAbortOnMemory TCPAbortOnTimeout TCPAbortOnLinger TCPAbortFailed TCPMemoryPressures TCPSACKDiscard TCPDSACKIgnoredOld TCPDSACKIgnoredNoUndo TCPSpuriousRTOs TCPMD5NotFound TCPMD5Unexpected TCPSackShifted TCPSackMerged TCPSackShiftFallback TCPBacklogDrop TCPMinTTLDrop TCPDeferAcceptDrop IPReversePathFilter TCPTimeWaitOverflow TCPReqQFullDoCookies TCPReqQFullDrop TCPRetransFail TCPRcvCoalesce TCPOFOQueue TCPOFODrop TCPOFOMerge TCPChallengeACK TCPSYNChallenge TCPFastOpenActive TCPFastOpenPassive TCPFastOpenPassiveFail TCPFastOpenListenOverflow TCPFastOpenCookieReqd TCPSpuriousRtxHostQueues BusyPollRxPackets
