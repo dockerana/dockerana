@@ -24,7 +24,7 @@ docker rm dockerana-grafana >/dev/null 2>&1
 docker run -d -P --name dockerana-grafana schvin/grafana
 
 echo "starting docker host syslog ingest . . ."
-sudo docker run -d -v /var/log:/tmp/log:ro --link graphite:graphite schvin/dockerana
+docker run -d -v /var/log:/tmp/log:ro --link graphite:graphite schvin/dockerana
 
 PORT=`docker ps | grep dockerana-grafana | sed -e 's/.*://' | sed -e 's/\-.*//'`
 HOST=`/usr/bin/env | grep DOCKER_HOST | perl -pe 's/.*\/([0-9\.]+):.*/$1/'`
