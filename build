@@ -15,5 +15,8 @@ docker build -t schvin/graphite .
 cd ../../components/grafana
 docker build -t schvin/grafana .
 
+cd ../../
+docker build -t schvin/dockerana .
+
 echo; echo
 echo -e "\033[1mOk! You're ready to start dockerana.\033[0m"
