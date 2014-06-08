@@ -2,7 +2,6 @@ FROM ubuntu:trusty
 MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN apt-get -y update
-
 RUN apt-get -y install openjdk-7-jre \
                        wget
 
