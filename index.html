@@ -29,13 +29,15 @@
     <div class="container">
       <section id="main_content">
         <h1>
-<a name="dockerana" class="anchor" href="#dockerana"><span class="octicon octicon-link"></span></a><a href="http://schvin.github.io/dockerana/">dockerana</a>
+<a name="dockerana" class="anchor" href="#dockerana"><span class="octicon octicon-link"></span></a><a href="http://dockerana.com/">dockerana</a>
 </h1>
 
 <p>Pitch:</p>
 
 <ul>
 <li>time-series (note kibana, graphite, etc)</li>
+<li>here is how to build/run this, drops-in and autodiscovers on ubuntu 14.04 at moment</li>
+<li>where to find it (github, docker index, etc.)</li>
 </ul><p><img src="http://thecabin.net/sites/default/files/bigfoot.jpg"></p>
 
 <h4>
@@ -91,12 +93,6 @@ sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2&gt;&amp;1 | logger -t d
 
 <pre><code>./stop
 </code></pre>
-
-<p>FIXME</p>
-
-<p>start up dockerana</p>
-
-<p>sudo docker run --privileged=true -v /var/log:/tmp/log:ro -v /proc:/tmp/proc:ro --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash</p>
       </section>
     </div>
 
