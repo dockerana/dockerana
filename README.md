@@ -49,6 +49,24 @@ Go ahead and start docker:
 sudo service docker.io start
 ```
 
+To build:
+
+```
+./build
+```
+
+To start:
+
+```
+./start
+```
+
+To stop:
+
+```
+./stop
+```
+
 FIXME
 
 start up dockerana
