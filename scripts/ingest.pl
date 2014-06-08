@@ -26,7 +26,12 @@ die "Unable to connect: $!\n" unless ($sock->connected);
 
 while($line = <>) {
   
-  my $data = [["event", [time(), 1]]];
+  my $t    = time();
+  my $data = [["docker.event.recorded", [$t, 1]]];
+
+  if($line =~ /\/sbin\/iptables/) {
+    push @{$data}, ["docker.iptables.adjustment", [$t, 1]];
+  }
 
 #my($data) = [
 #             ["path.mytest", [1332444075,27893687]],
