@@ -41,12 +41,12 @@ while($line = <>) {
   chomp $line;
 
   @parts = ();
+  my $t  = time();
 
-  my $t    = time();
-
-  Net::Statsd::increment('docker.event.int');
+  Net::Statsd::increment('docker.event.recorded.int');
 
   #my $data = [["docker.event.recorded", [$t, 1]]];
+  my $data = [["docker.event.r1", [$t, 1]]];
 
   if($grabnext->{'cpu'} && '1' == $grabnext->{'cpu'}) {
 
@@ -74,7 +74,23 @@ while($line = <>) {
     delete($grabnext->{'cpu'});
 
   } elsif($line =~ /\/sbin\/iptables/) {
-    push @{$data}, ["docker.iptables.adjustment", [$t, 1]];
+    print "sending iptables event...\n";
+    Net::Statsd::increment('docker.iptables.adjustment.int');
+
+  # FIXME (needs to pull starting values if there are pre-existing containers, and needs to know about other API versions)
+  } elsif($line =~ /\/v1.12\//) {
+    #print "sending API event...\n";
+    Net::Statsd::increment('docker.api.call.int');
+
+    if($line =~ /POST \/v1.12\/containers\/create/) {
+      Net::Statsd::increment('docker.containers.running');
+    } elsif($line =~ /POST \/v1.12\/containers\/.*\/stop/) {
+      Net::Statsd::decrement('docker.containers.running');
+      Net::Statsd::increment('docker.containers.stopped');
+    # FIXME
+    } elsif($line =~ /DELETE \/v1.12\/containers\//) {
+      Net::Statsd::decrement('docker.containers.stopped');
+    }
 
   } elsif($line =~ /^docker.host.loadavg\s+([\d\.]+)\s+([\d\.]+)\s+([\d\.]+)\s+(\d+)\/(\d+)\s/) {
     push @{$data}, ["docker.host.loadavg.1-min", [$t, $1]];
@@ -103,7 +119,7 @@ while($line = <>) {
     }
 
   } else {
-    print STDERR "unknown event ($line)\n";
+    #print STDERR "unknown event ($line)\n";
   }
 
   #print "writing....\t", Dumper($data);
