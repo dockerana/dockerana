@@ -9,7 +9,7 @@ initial setup :
 
 * disclaimer about logs & disk space (upstart will rotate/etc; but growth of backend, etc.)
 
-ubuntu 14.04 (assumes vanilla install):
+ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):
 
 official install from http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit
 
@@ -50,4 +50,4 @@ FIXME
 
 start up dockerana
 
- sudo docker run --privileged=true --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
+ sudo docker run --privileged=true -v /var/log:/tmp/log:ro -v /proc:/tmp/proc:ro --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
