@@ -12,4 +12,8 @@ echo "stopping grafana . . ."
 docker kill dockerana-grafana >/dev/null 2>&1
 docker rm dockerana-grafana >/dev/null 2>&1
 
+echo "stopping dockerana . . ."
+docker kill dockerana >/dev/null 2>&1
+docker rm dockerana >/dev/null 2>&1
+
 echo "Everything is stopped."
