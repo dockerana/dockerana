@@ -15,3 +15,380 @@ network interface traffic by container and host
 process table (by container, or overall total?)
 
 usual proc data for host (cpu, mem used/overall, io, etc.)
+
+
+/proc
+
+$ cat /proc/meminfo
+MemTotal:        3854836 kB
+MemFree:          777544 kB
+Buffers:          267804 kB
+Cached:          1890068 kB
+SwapCached:            0 kB
+Active:          1731332 kB
+Inactive:        1082212 kB
+Active(anon):     654644 kB
+Inactive(anon):      312 kB
+Active(file):    1076688 kB
+Inactive(file):  1081900 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               432 kB
+Writeback:             0 kB
+AnonPages:        654508 kB
+Mapped:            62092 kB
+Shmem:               448 kB
+Slab:             213076 kB
+SReclaimable:     190112 kB
+SUnreclaim:        22964 kB
+KernelStack:        2552 kB
+PageTables:         7644 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     1927416 kB
+Committed_AS:    1454040 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       18608 kB
+VmallocChunk:   34359686732 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:    321536 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       47104 kB
+DirectMap2M:     3885056 kB
+
+$ cat /proc/loadavg
+0.50 0.86 1.03 4/305 12340
+
+$ cat /proc/net/netstat 
+TcpExt: SyncookiesSent SyncookiesRecv SyncookiesFailed EmbryonicRsts PruneCalled RcvPruned OfoPruned OutOfWindowIcmps LockDroppedIcmps ArpFilter TW TWRecycled TWKilled PAWSPassive PAWSActive PAWSEstab DelayedACKs DelayedACKLocked DelayedACKLost ListenOverflows ListenDrops TCPPrequeued TCPDirectCopyFromBacklog TCPDirectCopyFromPrequeue TCPPrequeueDropped TCPHPHits TCPHPHitsToUser TCPPureAcks TCPHPAcks TCPRenoRecovery TCPSackRecovery TCPSACKReneging TCPFACKReorder TCPSACKReorder TCPRenoReorder TCPTSReorder TCPFullUndo TCPPartialUndo TCPDSACKUndo TCPLossUndo TCPLostRetransmit TCPRenoFailures TCPSackFailures TCPLossFailures TCPFastRetrans TCPForwardRetrans TCPSlowStartRetrans TCPTimeouts TCPLossProbes TCPLossProbeRecovery TCPRenoRecoveryFail TCPSackRecoveryFail TCPSchedulerFailed TCPRcvCollapsed TCPDSACKOldSent TCPDSACKOfoSent TCPDSACKRecv TCPDSACKOfoRecv TCPAbortOnData TCPAbortOnClose TCPAbortOnMemory TCPAbortOnTimeout TCPAbortOnLinger TCPAbortFailed TCPMemoryPressures TCPSACKDiscard TCPDSACKIgnoredOld TCPDSACKIgnoredNoUndo TCPSpuriousRTOs TCPMD5NotFound TCPMD5Unexpected TCPSackShifted TCPSackMerged TCPSackShiftFallback TCPBacklogDrop TCPMinTTLDrop TCPDeferAcceptDrop IPReversePathFilter TCPTimeWaitOverflow TCPReqQFullDoCookies TCPReqQFullDrop TCPRetransFail TCPRcvCoalesce TCPOFOQueue TCPOFODrop TCPOFOMerge TCPChallengeACK TCPSYNChallenge TCPFastOpenActive TCPFastOpenPassive TCPFastOpenPassiveFail TCPFastOpenListenOverflow TCPFastOpenCookieReqd TCPSpuriousRtxHostQueues BusyPollRxPackets
+TcpExt: 0 0 0 10 2801 0 0 0 0 0 169 0 0 0 0 0 3238 3 60 0 0 183 1205 186581 0 90223 150 14548 234565 0 2 0 0 0 0 0 0 0 0 16 0 0 3 0 2 0 1 33 1132 162 0 1 0 916743 61 1 620 1 133 9 0 1 0 0 0 0 0 142 7 0 0 0 0 2136 0 0 0 0 0 0 0 0 45539 21 0 1 0 0 0 0 0 0 0 2 0
+IpExt: InNoRoutes InTruncatedPkts InMcastPkts OutMcastPkts InBcastPkts OutBcastPkts InOctets OutOctets InMcastOctets OutMcastOctets InBcastOctets OutBcastOctets InCsumErrors InNoECTPkts InECT1Pkts InECT0Pkts InCEPkts
+IpExt: 2 0 0 0 0 0 1267398783 551499522 0 0 0 0 0 1198348 0 0 0
+
+$ cat /proc/net/sockstat
+sockets: used 453
+TCP: inuse 6 orphan 0 tw 6 alloc 146 mem 3
+UDP: inuse 2 mem 2
+UDPLITE: inuse 0
+RAW: inuse 0
+FRAG: inuse 0 memory 0
+
+$ cat /proc/net/sockstat6
+TCP6: inuse 13
+UDP6: inuse 3
+UDPLITE6: inuse 0
+RAW6: inuse 0
+FRAG6: inuse 0 memory 0
+
+$ cat /proc/net/snmp
+Ip: Forwarding DefaultTTL InReceives InHdrErrors InAddrErrors ForwDatagrams InUnknownProtos InDiscards InDelivers OutRequests OutDiscards OutNoRoutes ReasmTimeout ReasmReqds ReasmOKs ReasmFails FragOKs FragFails FragCreates
+Ip: 1 64 483560 0 0 72524 0 0 410985 424211 0 0 0 0 0 0 0 0 0
+Icmp: InMsgs InErrors InCsumErrors InDestUnreachs InTimeExcds InParmProbs InSrcQuenchs InRedirects InEchos InEchoReps InTimestamps InTimestampReps InAddrMasks InAddrMaskReps OutMsgs OutErrors OutDestUnreachs OutTimeExcds OutParmProbs OutSrcQuenchs OutRedirects OutEchos OutEchoReps OutTimestamps OutTimestampReps OutAddrMasks OutAddrMaskReps
+Icmp: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 94 0 94 0 0 0 0 0 0 0 0 0 0
+IcmpMsg: OutType3
+IcmpMsg: 94
+Tcp: RtoAlgorithm RtoMin RtoMax MaxConn ActiveOpens PassiveOpens AttemptFails EstabResets CurrEstab InSegs OutSegs RetransSegs InErrs OutRsts InCsumErrors
+Tcp: 1 200 120000 -1 537 28 11 13 5 409254 350465 47 0 371 0
+Udp: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors
+Udp: 1722 7 0 1731 0 0 0
+UdpLite: InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors
+UdpLite: 0 0 0 0 0 0 0
+
+$ cat /proc/net/snmp6
+Ip6InReceives                           886
+Ip6InHdrErrors                          0
+Ip6InTooBigErrors                       0
+Ip6InNoRoutes                           3
+Ip6InAddrErrors                         0
+Ip6InUnknownProtos                      0
+Ip6InTruncatedPkts                      0
+Ip6InDiscards                           0
+Ip6InDelivers                           0
+Ip6OutForwDatagrams                     0
+Ip6OutRequests                          815
+Ip6OutDiscards                          0
+Ip6OutNoRoutes                          12
+Ip6ReasmTimeout                         0
+Ip6ReasmReqds                           0
+Ip6ReasmOKs                             0
+Ip6ReasmFails                           0
+Ip6FragOKs                              0
+Ip6FragFails                            0
+Ip6FragCreates                          0
+Ip6InMcastPkts                          883
+Ip6OutMcastPkts                         1255
+Ip6InOctets                             60740
+Ip6OutOctets                            55304
+Ip6InMcastOctets                        60524
+Ip6OutMcastOctets                       88744
+Ip6InBcastOctets                        0
+Ip6OutBcastOctets                       0
+Ip6InNoECTPkts                          886
+Ip6InECT1Pkts                           0
+Ip6InECT0Pkts                           0
+Ip6InCEPkts                             0
+Icmp6InMsgs                             0
+Icmp6InErrors                           0
+Icmp6OutMsgs                            815
+Icmp6OutErrors                          0
+Icmp6InCsumErrors                       0
+Icmp6InDestUnreachs                     0
+Icmp6InPktTooBigs                       0
+Icmp6InTimeExcds                        0
+Icmp6InParmProblems                     0
+Icmp6InEchos                            0
+Icmp6InEchoReplies                      0
+Icmp6InGroupMembQueries                 0
+Icmp6InGroupMembResponses               0
+Icmp6InGroupMembReductions              0
+Icmp6InRouterSolicits                   0
+Icmp6InRouterAdvertisements             0
+Icmp6InNeighborSolicits                 0
+Icmp6InNeighborAdvertisements           0
+Icmp6InRedirects                        0
+Icmp6InMLDv2Reports                     0
+Icmp6OutDestUnreachs                    0
+Icmp6OutPktTooBigs                      0
+Icmp6OutTimeExcds                       0
+Icmp6OutParmProblems                    0
+Icmp6OutEchos                           0
+Icmp6OutEchoReplies                     0
+Icmp6OutGroupMembQueries                0
+Icmp6OutGroupMembResponses              0
+Icmp6OutGroupMembReductions             0
+Icmp6OutRouterSolicits                  267
+Icmp6OutRouterAdvertisements            0
+Icmp6OutNeighborSolicits                108
+Icmp6OutNeighborAdvertisements          0
+Icmp6OutRedirects                       0
+Icmp6OutMLDv2Reports                    440
+Icmp6OutType133                         267
+Icmp6OutType135                         108
+Icmp6OutType143                         440
+Udp6InDatagrams                         0
+Udp6NoPorts                             0
+Udp6InErrors                            0
+Udp6OutDatagrams                        0
+Udp6RcvbufErrors                        0
+Udp6SndbufErrors                        0
+Udp6InCsumErrors                        0
+UdpLite6InDatagrams                     0
+UdpLite6NoPorts                         0
+UdpLite6InErrors                        0
+UdpLite6OutDatagrams                    0
+UdpLite6RcvbufErrors                    0
+UdpLite6SndbufErrors                    0
+UdpLite6InCsumErrors                    0
+
+$ cat /proc/net/unix
+Num       RefCount Protocol Flags    Type St Inode Path
+0000000000000000: 00000002 00000000 00010000 0001 01 106540 /var/run/docker.sock
+0000000000000000: 00000002 00000000 00010000 0005 01  6978 /run/udev/control
+0000000000000000: 0000000A 00000000 00000000 0002 01 16964 /dev/log
+0000000000000000: 00000002 00000000 00010000 0001 01  6676 @/com/ubuntu/upstart
+0000000000000000: 00000002 00000000 00010000 0001 01  8907 /var/run/dbus/system_bus_socket
+0000000000000000: 00000002 00000000 00010000 0001 01  9193 /var/run/acpid.socket
+0000000000000000: 00000002 00000000 00000000 0002 01 64535
+0000000000000000: 00000003 00000000 00000000 0001 03 187373
+0000000000000000: 00000002 00000000 00000000 0002 01 109601
+0000000000000000: 00000003 00000000 00000000 0001 03 64685 /var/run/dbus/system_bus_socket
+0000000000000000: 00000002 00000000 00000000 0002 01  8917
+0000000000000000: 00000002 00000000 00000000 0002 01 187190
+0000000000000000: 00000003 00000000 00000000 0001 03 64684
+0000000000000000: 00000003 00000000 00000000 0001 03  8965
+0000000000000000: 00000003 00000000 00000000 0001 03 109135
+0000000000000000: 00000003 00000000 00000000 0001 03  8830 @/com/ubuntu/upstart
+0000000000000000: 00000003 00000000 00000000 0001 03 188062
+0000000000000000: 00000003 00000000 00000000 0001 03  8918
+0000000000000000: 00000003 00000000 00000000 0001 03 187378
+0000000000000000: 00000003 00000000 00000000 0001 03 188114
+0000000000000000: 00000003 00000000 00000000 0001 03 64678
+0000000000000000: 00000003 00000000 00000000 0001 03  8923 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0001 03 188380 /var/run/docker.sock
+0000000000000000: 00000002 00000000 00000000 0002 01  9190
+0000000000000000: 00000003 00000000 00000000 0001 03  6960 @/com/ubuntu/upstart
+0000000000000000: 00000003 00000000 00000000 0001 03 109141
+0000000000000000: 00000003 00000000 00000000 0001 03 182229 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0001 03 188379
+0000000000000000: 00000003 00000000 00000000 0001 03 182228
+0000000000000000: 00000002 00000000 00000000 0002 01 106534
+0000000000000000: 00000003 00000000 00000000 0001 03 188120
+0000000000000000: 00000002 00000000 00000000 0002 01 182145
+0000000000000000: 00000003 00000000 00000000 0001 03  7603
+0000000000000000: 00000003 00000000 00000000 0001 03 64679
+0000000000000000: 00000002 00000000 00000000 0001 03 188036
+0000000000000000: 00000003 00000000 00000000 0001 03 52877
+0000000000000000: 00000003 00000000 00000000 0001 03 109142 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0001 03 187379 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0001 03 52878
+0000000000000000: 00000003 00000000 00000000 0001 03 109136
+0000000000000000: 00000002 00000000 00000000 0002 01 52748
+0000000000000000: 00000003 00000000 00000000 0001 03  8798
+0000000000000000: 00000003 00000000 00000000 0001 03 52884 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0001 03  8919
+0000000000000000: 00000003 00000000 00000000 0001 03 188118 /var/run/docker.sock
+0000000000000000: 00000003 00000000 00000000 0001 03 187372
+0000000000000000: 00000002 00000000 00000000 0001 03 109599
+0000000000000000: 00000003 00000000 00000000 0001 03  8966 /var/run/dbus/system_bus_socket
+0000000000000000: 00000003 00000000 00000000 0002 01  7014
+0000000000000000: 00000003 00000000 00000000 0001 03 182223
+0000000000000000: 00000003 00000000 00000000 0001 03  6957
+0000000000000000: 00000003 00000000 00000000 0001 03 52883
+0000000000000000: 00000003 00000000 00000000 0001 03 188063 /var/run/docker.sock
+0000000000000000: 00000003 00000000 00000000 0002 01  7013
+0000000000000000: 00000003 00000000 00000000 0001 03 188121 /var/run/docker.sock
+0000000000000000: 00000003 00000000 00000000 0001 03 182222
+0000000000000000: 00000002 00000000 00000000 0002 01 188038
+0000000000000000: 00000003 00000000 00000000 0001 03  8922
+0000000000000000: 00000003 00000000 00000000 0001 03  7610 @/com/ubuntu/upstart
+0000000000000000: 00000002 00000000 00000000 0002 01 108950
+
+$ cat /proc/net/fib_triestat 
+Basic info: size of leaf: 40 bytes, size of tnode: 40 bytes.
+Main:
+        Aver depth:     1.66
+        Max depth:      2
+        Leaves:         3
+        Prefixes:       3
+        Internal nodes: 2
+          1: 2
+        Pointers: 4
+Null ptrs: 0
+Total size: 1  kB
+
+Counters:
+---------
+gets = 155424
+backtracks = 0
+semantic match passed = 155424
+semantic match miss = 0
+null node hit= 0
+skipped node resize = 0
+
+Local:
+        Aver depth:     2.66
+        Max depth:      3
+        Leaves:         9
+        Prefixes:       10
+        Internal nodes: 7
+          1: 6  2: 1
+        Pointers: 16
+Null ptrs: 1
+Total size: 2  kB
+
+Counters:
+---------
+gets = 164225
+backtracks = 148167
+semantic match passed = 5081
+semantic match miss = 0
+null node hit= 15533
+skipped node resize = 0
+
+$ cat /proc/net/snmp6
+Ip6InReceives                           888
+Ip6InHdrErrors                          0
+Ip6InTooBigErrors                       0
+Ip6InNoRoutes                           3
+Ip6InAddrErrors                         0
+Ip6InUnknownProtos                      0
+Ip6InTruncatedPkts                      0
+Ip6InDiscards                           0
+Ip6InDelivers                           0
+Ip6OutForwDatagrams                     0
+Ip6OutRequests                          818
+Ip6OutDiscards                          0
+Ip6OutNoRoutes                          12
+Ip6ReasmTimeout                         0
+Ip6ReasmReqds                           0
+Ip6ReasmOKs                             0
+Ip6ReasmFails                           0
+Ip6FragOKs                              0
+Ip6FragFails                            0
+Ip6FragCreates                          0
+Ip6InMcastPkts                          885
+Ip6OutMcastPkts                         1260
+Ip6InOctets                             60892
+Ip6OutOctets                            55520
+Ip6InMcastOctets                        60676
+Ip6OutMcastOctets                       89112
+Ip6InBcastOctets                        0
+Ip6OutBcastOctets                       0
+Ip6InNoECTPkts                          888
+Ip6InECT1Pkts                           0
+Ip6InECT0Pkts                           0
+Ip6InCEPkts                             0
+Icmp6InMsgs                             0
+Icmp6InErrors                           0
+Icmp6OutMsgs                            818
+Icmp6OutErrors                          0
+Icmp6InCsumErrors                       0
+Icmp6InDestUnreachs                     0
+Icmp6InPktTooBigs                       0
+Icmp6InTimeExcds                        0
+Icmp6InParmProblems                     0
+Icmp6InEchos                            0
+Icmp6InEchoReplies                      0
+Icmp6InGroupMembQueries                 0
+Icmp6InGroupMembResponses               0
+Icmp6InGroupMembReductions              0
+Icmp6InRouterSolicits                   0
+Icmp6InRouterAdvertisements             0
+Icmp6InNeighborSolicits                 0
+Icmp6InNeighborAdvertisements           0
+Icmp6InRedirects                        0
+Icmp6InMLDv2Reports                     0
+Icmp6OutDestUnreachs                    0
+Icmp6OutPktTooBigs                      0
+Icmp6OutTimeExcds                       0
+Icmp6OutParmProblems                    0
+Icmp6OutEchos                           0
+Icmp6OutEchoReplies                     0
+Icmp6OutGroupMembQueries                0
+Icmp6OutGroupMembResponses              0
+Icmp6OutGroupMembReductions             0
+Icmp6OutRouterSolicits                  267
+Icmp6OutRouterAdvertisements            0
+Icmp6OutNeighborSolicits                109
+Icmp6OutNeighborAdvertisements          0
+Icmp6OutRedirects                       0
+Icmp6OutMLDv2Reports                    442
+Icmp6OutType133                         267
+Icmp6OutType135                         109
+Icmp6OutType143                         442
+Udp6InDatagrams                         0
+Udp6NoPorts                             0
+Udp6InErrors                            0
+Udp6OutDatagrams                        0
+Udp6RcvbufErrors                        0
+Udp6SndbufErrors                        0
+Udp6InCsumErrors                        0
+UdpLite6InDatagrams                     0
+UdpLite6NoPorts                         0
+UdpLite6InErrors                        0
+UdpLite6OutDatagrams                    0
+UdpLite6RcvbufErrors                    0
+UdpLite6SndbufErrors                    0
+UdpLite6InCsumErrors                    0
+
+$ cat /proc/stat
+cpu  90079 4992 141481 2043232 342053 1719 0 138512 0 0
+cpu0 90079 4992 141481 2043232 342053 1719 0 138512 0 0
+intr 6347549 72 9 0 0 735 0 3 0 2 0 0 0 144 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4720756 0 0 0 0 0 380 0 527034 785 707793 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ctxt 31428998
+btime 1402188658
+processes 45572
+procs_running 3
+procs_blocked 0
+softirq 2097092 0 820516 362952 498845 0 0 1 0 712 414066
+
+$ cat /proc/uptime
+26387.61 20553.71
+
