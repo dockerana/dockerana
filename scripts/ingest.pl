@@ -73,8 +73,20 @@ while($line = <>) {
 
     delete($grabnext->{'cpu'});
 
+  } elsif($line =~ / netstat: ([\w\d]+)\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+/) {
+
+    Net::Statsd::gauge('docker.net.interface.$1.rx-ok', $2);
+    Net::Statsd::gauge('docker.net.interface.$1.rx-err', $3);
+    Net::Statsd::gauge('docker.net.interface.$1.rx-drp', $4);
+    Net::Statsd::gauge('docker.net.interface.$1.rx-ovr', $5);
+
+    Net::Statsd::gauge('docker.net.interface.$1.tx-ok', $6);
+    Net::Statsd::gauge('docker.net.interface.$1.tx-err', $7);
+    Net::Statsd::gauge('docker.net.interface.$1.tx-drp', $8);
+    Net::Statsd::gauge('docker.net.interface.$1.tx-ovr', $9);
+
   } elsif($line =~ /\/sbin\/iptables/) {
-    print "sending iptables event...\n";
+    #print "sending iptables event...\n";
     Net::Statsd::increment('docker.iptables.adjustment.int');
 
   # FIXME (needs to pull starting values if there are pre-existing containers, and needs to know about other API versions)
