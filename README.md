@@ -1,4 +1,4 @@
-[dockerana](http://schvin.github.io/dockerana/)
+[dockerana](http://dockerana.com/)
 =========
 
 Pitch:
