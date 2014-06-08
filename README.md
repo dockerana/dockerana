@@ -4,6 +4,8 @@
 Pitch:
 
 * time-series (note kibana, graphite, etc)
+* here is how to build/run this, drops-in and autodiscovers on ubuntu 14.04 at moment
+* where to find it (github, docker index, etc.)
 
 <img src="http://thecabin.net/sites/default/files/bigfoot.jpg">
 
