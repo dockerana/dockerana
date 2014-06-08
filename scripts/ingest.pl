@@ -43,7 +43,10 @@ while($line = <>) {
   @parts = ();
 
   my $t    = time();
-  my $data = [["docker.event.recorded", [$t, 1]]];
+
+  Net::Statsd::increment('docker.event.int');
+
+  #my $data = [["docker.event.recorded", [$t, 1]]];
 
   if($grabnext->{'cpu'} && '1' == $grabnext->{'cpu'}) {
 
