@@ -10,9 +10,11 @@ use Python::Serialise::Pickle qw();
 
 my $carbon_port;
 my $carbon_server;
+my $grabnext;
+my $i;
 my $line;
 my $sock;
-my %grabnext;
+my %grabnext_h;
 my @parts;
 
 $| = 0;
@@ -27,26 +29,42 @@ $sock = IO::Socket::INET->new (
         );
 die "Unable to connect: $!\n" unless ($sock->connected);
 
+$grabnext = \%grabnext_h;
+$grabnext = {};
+
 while($line = <>) {
   
   chomp $line;
 
+  @parts = ();
+
   my $t    = time();
   my $data = [["docker.event.recorded", [$t, 1]]];
 
-  if(%grabnext && $grabnext{'cpu'} && '1' == $grabnext{'cpu'}) {
+  if($grabnext->{'cpu'} && '1' == $grabnext->{'cpu'}) {
 
-    print "found cpu, $line\n";
+    #print STDERR "found cpu, $line\n";
+    $line =~ s/^docker.host.iostat\s+//;
     @parts = split(/\s+/, $line);
+
+    for($i = 0; $i <= 5; $i++) {
+      #print "before: |$parts[$i]|...";
+      $parts[$i] =~ s/[^\d\.]+//g;
+      $parts[$i] = $parts[$i] * 100;
+      if($parts[$i] eq '0') {
+        $parts[$i] = '1';
+      }
+      #print "after: |$parts[$i]|\n";
+    }
+
     push @{$data}, ["docker.host.avg-cpu.user", [$t, $parts[0]]];
     push @{$data}, ["docker.host.avg-cpu.nice", [$t, $parts[1]]];
     push @{$data}, ["docker.host.avg-cpu.system", [$t, $parts[2]]];
     push @{$data}, ["docker.host.avg-cpu.iowait", [$t, $parts[3]]];
     push @{$data}, ["docker.host.avg-cpu.steal", [$t, $parts[4]]];
     push @{$data}, ["docker.host.avg-cpu.idle", [$t, $parts[5]]];
-   
-    delete($grabnext{'cpu'});
-    @parts = ();
+
+    delete($grabnext->{'cpu'});
 
   } elsif($line =~ /\/sbin\/iptables/) {
     push @{$data}, ["docker.iptables.adjustment", [$t, 1]];
@@ -60,7 +78,7 @@ while($line = <>) {
 
   } elsif($line =~ /^docker.host.iostat\s+(.*)/) {
     if($1 =~ /^avg-cpu:/) {
-      $grabnext{'cpu'} = 1;
+      $grabnext->{'cpu'} = 1;
 
     } elsif($1 !~ /^\s*$|Linux|Device:/) {
       @parts = split(/\s+/, $1);
@@ -71,17 +89,21 @@ while($line = <>) {
         push @{$data}, ["docker.host.io.$parts[0].kb_read", [$t, $parts[4]]];
         push @{$data}, ["docker.host.io.$parts[0].kb_written", [$t, $parts[5]]];
       } else {
-        print "unknown disk output from iostat ($line)\n";
+        print STDERR "unknown disk output from iostat ($line)\n";
       }
 
       @parts = ();
     }
 
   } else {
-    print "unknown event ($line)\n";
+    print STDERR "unknown event ($line)\n";
   }
 
   #print "writing....\t", Dumper($data);
+  #local *FD;
+  #open(FD, "> /tmp/ingest-$$-$..txt");
+  #print FD Dumper($data);
+  #close(FD);
 
   my $message = pack("N/a*", pickle_dumps($data));
   $sock->send($message);
