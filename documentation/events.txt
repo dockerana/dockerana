@@ -1,0 +1,13 @@
+overall gauge of # of events/second
+
+event gauge by container vs dockerd vs host
+
+container create
+
+container destroy
+
+network interface traffic by container and host
+
+process table (by container, or overall total?)
+
+usual proc data for host (cpu, mem used/overall, io, etc.)
