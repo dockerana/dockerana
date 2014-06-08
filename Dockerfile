@@ -2,9 +2,9 @@ FROM ubuntu:trusty
 MAINTAINER George Lewis <schvin@schvin.net>
 
 RUN apt-get update
-RUN apt-get install -y sysstat
+RUN apt-get install -y sysstat make
 
-RUN perl -MCPAN -e 'install Python::Serialise::Pickle; install IO::Socket::INET'
+RUN perl -MCPAN -e 'install Python::Serialise::Pickle; install Net::Statsd'
 
 ADD scripts/ingest.pl /usr/local/bin/
 ADD scripts/periodic-loop.pl /usr/local/bin/
