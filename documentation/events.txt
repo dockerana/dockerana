@@ -6,6 +6,10 @@ container create
 
 container destroy
 
+running containers
+
+count of images
+
 network interface traffic by container and host
 
 process table (by container, or overall total?)
