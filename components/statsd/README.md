@@ -1,7 +1,7 @@
 To build:
 
 ```
-docker build -t schvin/graphite .
+docker build -t schvin/statsd .
 ```
 
 To run:
