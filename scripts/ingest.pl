@@ -14,8 +14,8 @@ my $line;
 
 $| = 0;
 
-$carbon_server = $ENV{'GRAFANA_PORT_2004_TCP_ADDR'};
-$carbon_port   = $ENV{'GRAFANA_PORT_2004_TCP_PORT'};
+$carbon_server = $ENV{'GRAPHITE_PORT_2004_TCP_ADDR'};
+$carbon_port   = $ENV{'GRAPHITE_PORT_2004_TCP_PORT'};
 
 $sock = IO::Socket::INET->new (
           PeerAddr => $carbon_server,

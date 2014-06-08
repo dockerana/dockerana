@@ -66,9 +66,3 @@ To stop:
 ```
 ./stop
 ```
-
-FIXME
-
-start up dockerana
-
- sudo docker run --privileged=true -v /var/log:/tmp/log:ro -v /proc:/tmp/proc:ro --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
