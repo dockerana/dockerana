@@ -4,7 +4,7 @@ IOSTAT="/tmp/iostat"
 IOSTATLATEST=`ls -1t $IOSTAT* | head -3 | tail -1`
 
 echo -n "docker.host.loadavg ";
-cat /tmp/proc/loadavg
+cat /proc/loadavg
 
 if [ -n "$IOSTATLATEST" ]; then
   sed -e 's/^/docker.host.iostat /' $IOSTATLATEST
