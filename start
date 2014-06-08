@@ -7,14 +7,21 @@ docker run -d \
            -p 9200:9200 \
            --name dockerana-elasticsearch schvin/elasticsearch
 
-echo "starting graphite . . ."
-docker kill dockerana-graphite >/dev/null 2>&1
-docker rm dockerana-graphite >/dev/null 2>&1
+echo "starting carbon . . ."
+docker kill dockerana-carbon >/dev/null 2>&1
+docker rm dockerana-carbon >/dev/null 2>&1
 docker run -d \
            -p 2003:2003 \
            -p 2004:2004 \
            -p 7002:7002 \
-           -p 8125:8125/udp \
+           -v /opt/graphite \
+           --name dockerana-carbon schvin/carbon
+
+echo "starting graphite . . ."
+docker kill dockerana-graphite >/dev/null 2>&1
+docker rm dockerana-graphite >/dev/null 2>&1
+docker run -d \
+           --volumes-from dockerana-carbon
            --name dockerana-graphite schvin/graphite
 
 echo "starting nginx . . ."
@@ -30,7 +37,7 @@ docker run -d -P --name dockerana-grafana schvin/grafana
 echo "starting docker host syslog ingest . . ."
 docker kill dockerana >/dev/null 2>&1
 docker rm dockerana >/dev/null 2>&1
-docker run -d -v /var/log:/tmp/log:ro --link dockerana-graphite:graphite schvin/dockerana
+docker run -d -v /var/log:/tmp/log:ro --link dockerana-graphite:graphite --name dockerana schvin/dockerana
 
 PORT=`docker ps | grep dockerana-grafana | sed -e 's/.*://' | sed -e 's/\-.*//'`
 HOST=`/usr/bin/env | grep DOCKER_HOST | perl -pe 's/.*\/([0-9\.]+):.*/$1/'`
