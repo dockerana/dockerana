@@ -7,6 +7,7 @@ use Data::Dumper;
 
 use IO::Socket::INET;
 use Python::Serialise::Pickle qw();
+use Net::Statsd;
 
 my $carbon_port;
 my $carbon_server;
@@ -19,8 +20,11 @@ my @parts;
 
 $| = 0;
 
-$carbon_server = $ENV{'GRAPHITE_PORT_2004_TCP_ADDR'};
-$carbon_port   = $ENV{'GRAPHITE_PORT_2004_TCP_PORT'};
+$carbon_server     = $ENV{'GRAPHITE_PORT_2004_TCP_ADDR'};
+$carbon_port       = $ENV{'GRAPHITE_PORT_2004_TCP_PORT'};
+
+$Net::Statsd::HOST = $ENV{'STATSD_PORT_8125_UDP_ADDR'};
+$Net::Statsd::PORT = $ENV{'STATSD_PORT_8125_UDP_PORT'};
 
 $sock = IO::Socket::INET->new (
           PeerAddr => $carbon_server,
@@ -73,8 +77,8 @@ while($line = <>) {
     push @{$data}, ["docker.host.loadavg.1-min", [$t, $1]];
     push @{$data}, ["docker.host.loadavg.5-min", [$t, $2]];
     push @{$data}, ["docker.host.loadavg.10-min", [$t, $3]];
-    push @{$data}, ["docker.host.processes.active", [$t, $4]];
-    push @{$data}, ["docker.host.processes.total", [$t, $5]];
+    push @{$data}, ["docker.host.processes.active.count", [$t, $4]];
+    push @{$data}, ["docker.host.processes.total.count", [$t, $5]];
 
   } elsif($line =~ /^docker.host.iostat\s+(.*)/) {
     if($1 =~ /^avg-cpu:/) {
