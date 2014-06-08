@@ -36,6 +36,8 @@ Make these changes :
 
 ```
 printf "\n# Added for dockerana log aggregation\nDOCKER_OPTS=\" -D\"\n" | sudo tee -a /etc/default/docker.io > /dev/null
+sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2>&1 | logger -t docker/' docker.io.conf
+
 ```
 
 Go ahead and start docker:
@@ -48,4 +50,4 @@ FIXME
 
 start up dockerana
 
- sudo docker run --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
+ sudo docker run --privileged=true --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
