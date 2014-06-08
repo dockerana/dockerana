@@ -18,6 +18,18 @@ sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 ```
 
+Update to a current docker:
+
+```
+cd /tmp
+wget https://get.docker.io/builds/Linux/x86_64/docker-latest -O docker
+sudo mv docker /usr/bin/docker.io
+sudo chown root:root /usr/bin/docker.io
+sudo chmod 755 /usr/bin/docker.io
+```
+
+/local/bin
+
 make these changes :
 
 (FIXME deal with situation where pre-existing docker_opts exist/ordering/etc)
