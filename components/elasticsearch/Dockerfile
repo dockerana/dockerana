@@ -1,7 +1,6 @@
 FROM ubuntu:trusty
 MAINTAINER Charlie Lewis <charliel@lab41.org>
 
-RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
 RUN apt-get -y update
 
 RUN apt-get -y install openjdk-7-jre \
