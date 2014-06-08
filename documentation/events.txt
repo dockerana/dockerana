@@ -13,6 +13,8 @@ FIXME need to define gauge vs counters etc
 
 ## Todo/scratch:
 
+sudo docker info | Containers:Images:
+
 overall gauge of # of events/second
 
 event gauge by container vs dockerd vs host
