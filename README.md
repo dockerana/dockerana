@@ -3,6 +3,8 @@ dockerana
 
 Pitch:
 
+* time-series (note kibana, graphite, etc)
+
 <img src="http://thecabin.net/sites/default/files/bigfoot.jpg">
 
 #### Initial setup :
