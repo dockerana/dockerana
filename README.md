@@ -3,6 +3,8 @@ dockerana
 
 pitch:
 
+<img src="http://thecabin.net/sites/default/files/bigfoot.jpg">
+
 initial setup :
 
 * disclaimer about logs & disk space (upstart will rotate/etc; but growth of backend, etc.)
