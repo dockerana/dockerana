@@ -2,7 +2,11 @@ FIXME need to define gauge vs counters etc
 
 ## Ad hoc events implemented:
 
-* docker.event.recorded (check)
+* stats_counts.docker.event.recorded.int
+* stats_counts.docker.iptables.adjustment.int
+* stats_counts.docker.api.call.int
+* stats.docker.containers.running
+* stats.docker.containers.stopped
 
 ## Periodic events implemented:
 
