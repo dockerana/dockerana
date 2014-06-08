@@ -20,7 +20,7 @@ echo "starting graphite . . ."
 docker kill dockerana-graphite >/dev/null 2>&1
 docker rm dockerana-graphite >/dev/null 2>&1
 docker run -d \
-           --volumes-from dockerana-carbon
+           --volumes-from dockerana-carbon \
            --name dockerana-graphite schvin/graphite
 
 echo "starting nginx . . ."
