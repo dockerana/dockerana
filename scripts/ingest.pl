@@ -3,7 +3,7 @@
 use IO::Socket::INET;
 use Python::Serialise::Pickle qw();
 
-my($carbon_server) = '127.0.0.1';
+my($carbon_server) = 'docker2';
 my($carbon_port) = 2004;
 
 my($data) = [
