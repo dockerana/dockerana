@@ -48,6 +48,6 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 VOLUME ["/opt/graphite/storage/whisper"]
 VOLUME ["/var/lib/log/supervisor"]
 
-EXPOSE 80 2004 7002 8125/udp
+EXPOSE 80 2003 2004 7002 8125/udp
 
 CMD ["/usr/bin/supervisord"]
