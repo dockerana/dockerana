@@ -30,9 +30,7 @@ sudo chown root:root /usr/bin/docker.io
 sudo chmod 755 /usr/bin/docker.io
 ```
 
-/local/bin
-
-make these changes :
+Make these changes :
 
 (FIXME deal with situation where pre-existing docker_opts exist/ordering/etc)
 
@@ -45,8 +43,6 @@ Go ahead and start docker:
 ```
 sudo service docker.io start
 ```
-
-
 
 FIXME
 
