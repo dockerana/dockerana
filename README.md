@@ -10,6 +10,7 @@ Pitch:
 #### Initial setup :
 
 * disclaimer about logs & disk space (upstart will rotate/etc; but growth of backend, etc.)
+* assumes ipv4 only at this point
 
 Ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):
 
