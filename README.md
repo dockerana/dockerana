@@ -1,7 +1,7 @@
 [dockerana](http://dockerana.com/)
 =========
 
-Pitch:
+[Pitch](http://dockerana.com/slides.html):
 
 * time-series (note kibana, graphite, etc)
 * here is how to build/run this, drops-in and autodiscovers on ubuntu 14.04 at moment
