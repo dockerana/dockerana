@@ -10,3 +10,4 @@ network interface traffic by container and host
 
 process table (by container, or overall total?)
 
+usual proc data for host (cpu, mem used/overall, io, etc.)
