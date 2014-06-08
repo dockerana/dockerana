@@ -48,5 +48,8 @@ sudo service docker.io start
 
 
 
+FIXME
 
+start up dockerana
 
+ sudo docker run --link hungry_heisenberg:grafana  -i -t dockerana /bin/bash
