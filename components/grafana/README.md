@@ -1,7 +1,7 @@
 To build:
 
 ```
-docker build -t grafana .
+docker build -t schvin/grafana .
 ```
 
 To run:
@@ -15,5 +15,5 @@ docker run -d \
            -p 8081:81 \
            -p 8125:8125/udp \
            -p 2003:2003/tcp \
-           --name grafana grafana
+           --name grafana schvin/grafana
 ```
