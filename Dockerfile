@@ -2,6 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER George Lewis <schvin@schvin.net>
 
 RUN apt-get update
+RUN apt-get install -y sysstat
 
 RUN perl -MCPAN -e 'install Python::Serialise::Pickle; install IO::Socket::INET'
 
