@@ -36,6 +36,7 @@ while($line = <>) {
 
   if(%grabnext && $grabnext{'cpu'} && '1' == $grabnext{'cpu'}) {
 
+    print "found cpu, $line\n";
     @parts = split(/\s+/, $line);
     push @{$data}, ["docker.host.avg-cpu.user", [$t, $parts[0]]];
     push @{$data}, ["docker.host.avg-cpu.nice", [$t, $parts[1]]];
@@ -80,10 +81,13 @@ while($line = <>) {
     print "unknown event ($line)\n";
   }
 
-  print "writing....\t", Dumper($data);
+  #print "writing....\t", Dumper($data);
 
   my $message = pack("N/a*", pickle_dumps($data));
   $sock->send($message);
+
+  undef $data;
+
 }
 
 $sock->shutdown(2);
