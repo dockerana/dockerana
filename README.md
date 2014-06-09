@@ -1,11 +1,13 @@
 [dockerana](http://dockerana.com/)
 =========
 
-[Pitch](http://dockerana.com/slides.html):
+* [Docker hackathon/dockercon14 slides](http://dockerana.com/slides.html)
 
-* time-series (note kibana, graphite, etc)
-* here is how to build/run this, drops-in and autodiscovers on ubuntu 14.04 at moment
-* where to find it (github, docker index, etc.)
+Overview:
+
+* time series docker instrumentation and visualization
+* built/tested as drop-in on Ubuntu Trusty at the moment, need to test on boot2docker
+* need to test across multiple hosts (whisper/elasticsearch/etc)
 
 <img src="http://thecabin.net/sites/default/files/bigfoot.jpg">
 
