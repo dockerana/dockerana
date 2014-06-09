@@ -7,25 +7,25 @@ sleep 3
 tput sgr0
 
 cd components/elasticsearch
-docker build -t schvin/elasticsearch .
+docker build -t dockerana/elasticsearch .
 
 cd ../../components/carbon
-docker build -t schvin/carbon .
+docker build -t dockerana/carbon .
 
 cd ../../components/graphite
-docker build -t schvin/graphite .
+docker build -t dockerana/graphite .
 
 cd ../../components/grafana
-docker build -t schvin/grafana .
+docker build -t dockerana/grafana .
 
 cd ../../components/nginx
-docker build -t schvin/nginx .
+docker build -t dockerana/nginx .
 
 cd ../../components/statsd
-docker build -t schvin/statsd .
+docker build -t dockerana/statsd .
 
 cd ../../
-docker build -t schvin/dockerana .
+docker build -t dockerana/dockerana .
 
 echo; echo
 echo -e "\033[1mOk! You're ready to start dockerana.\033[0m"
