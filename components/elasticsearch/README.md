@@ -1,7 +1,7 @@
 To build:
 
 ```
-docker build -t schvin/elasticsearch .
+docker build -t dockerana/elasticsearch .
 ```
 
 To run:
@@ -9,5 +9,5 @@ To run:
 ```
 docker run -d \
            -p 9200:9200 \
-           --name dockerana-elasticsearch schvin/elasticsearch
+           --name dockerana-elasticsearch dockerana/elasticsearch
 ```

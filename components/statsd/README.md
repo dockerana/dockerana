@@ -1,12 +1,12 @@
 To build:
 
 ```
-docker build -t schvin/statsd .
+docker build -t dockerana/statsd .
 ```
 
 To run:
 
 ```
 docker run -d -P \
-           --name dockerana-statsd --link dockerana-carbon:dockerana-carbon-link schvin/statsd
+           --name dockerana-statsd --link dockerana-carbon:dockerana-carbon-link dockerana/statsd
 ```

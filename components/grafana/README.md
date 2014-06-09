@@ -1,11 +1,11 @@
 To build:
 
 ```
-docker build -t schvin/grafana .
+docker build -t dockerana/grafana .
 ```
 
 To run:
 
 ```
-docker run -d -P --name dockerana-grafana schvin/grafana
+docker run -d -P --name dockerana-grafana dockerana/grafana
 ```

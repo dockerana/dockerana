@@ -1,7 +1,7 @@
 To build:
 
 ```
-docker build -t schvin/graphite .
+docker build -t dockerana/graphite .
 ```
 
 To run:
@@ -9,5 +9,5 @@ To run:
 ```
 docker run -d \
            --volumes-from dockerana-carbon \
-           --name dockerana-graphite schvin/graphite
+           --name dockerana-graphite dockerana/graphite
 ```
