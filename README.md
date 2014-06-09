@@ -73,6 +73,6 @@ To stop:
 
 Screenshots:
 
-<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/1.png">
-<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/2.png">
-<img src="https://github.com/schvin/dockerana/raw/master/documentation/screenshots/3.png">
+<img src="https://github.com/dockerana/dockerana/raw/master/documentation/screenshots/1.png">
+<img src="https://github.com/dockerana/dockerana/raw/master/documentation/screenshots/2.png">
+<img src="https://github.com/dockerana/dockerana/raw/master/documentation/screenshots/3.png">
