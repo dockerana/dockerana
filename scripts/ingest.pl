@@ -44,6 +44,7 @@ while($line = <>) {
   my $t  = time();
 
   Net::Statsd::increment('docker.event.recorded.int');
+  Net::Statsd::increment('d1.event1.int');
 
   #my $data = [["docker.event.recorded", [$t, 1]]];
   my $data = [["docker.event.r1", [$t, 1]]];
@@ -75,15 +76,25 @@ while($line = <>) {
 
   } elsif($line =~ / netstat: ([\w\d]+)\s+\d+\s+\d+\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+/) {
 
-    Net::Statsd::gauge('docker.net.interface.$1.rx-ok', $2);
-    Net::Statsd::gauge('docker.net.interface.$1.rx-err', $3);
-    Net::Statsd::gauge('docker.net.interface.$1.rx-drp', $4);
-    Net::Statsd::gauge('docker.net.interface.$1.rx-ovr', $5);
+    Net::Statsd::update_stats("docker.net.interface.$1.rx-ok", $2);
+    Net::Statsd::update_stats("docker.net.interface.$1.rx-err", $3);
+    Net::Statsd::update_stats("docker.net.interface.$1.rx-drp", $4);
+    Net::Statsd::update_stats("docker.net.interface.$1.rx-ovr", $5);
 
-    Net::Statsd::gauge('docker.net.interface.$1.tx-ok', $6);
-    Net::Statsd::gauge('docker.net.interface.$1.tx-err', $7);
-    Net::Statsd::gauge('docker.net.interface.$1.tx-drp', $8);
-    Net::Statsd::gauge('docker.net.interface.$1.tx-ovr', $9);
+    Net::Statsd::update_stats("docker.net.interface.$1.tx-ok", $6);
+    Net::Statsd::update_stats("docker.net.interface.$1.tx-err", $7);
+    Net::Statsd::update_stats("docker.net.interface.$1.tx-drp", $8);
+    Net::Statsd::update_stats("docker.net.interface.$1.tx-ovr", $9);
+
+    Net::Statsd::gauge("docker.net2.interface.$1.rx-ok", $2);
+    Net::Statsd::gauge("docker.net2.interface.$1.rx-err", $3);
+    Net::Statsd::gauge("docker.net2.interface.$1.rx-drp", $4);
+    Net::Statsd::gauge("docker.net2.interface.$1.rx-ovr", $5);
+
+    Net::Statsd::gauge("docker.net2.interface.$1.tx-ok", $6);
+    Net::Statsd::gauge("docker.net2.interface.$1.tx-err", $7);
+    Net::Statsd::gauge("docker.net2.interface.$1.tx-drp", $8);
+    Net::Statsd::gauge("docker.net2.interface.$1.tx-ovr", $9);
 
   } elsif($line =~ /\/sbin\/iptables/) {
     #print "sending iptables event...\n";
@@ -91,7 +102,7 @@ while($line = <>) {
 
   # FIXME (needs to pull starting values if there are pre-existing containers, and needs to know about other API versions)
   } elsif($line =~ /\/v1.12\//) {
-    #print "sending API event...\n";
+    print "sending API event...\n";
     Net::Statsd::increment('docker.api.call.int');
 
     if($line =~ /POST \/v1.12\/containers\/create/) {
@@ -108,8 +119,8 @@ while($line = <>) {
     push @{$data}, ["docker.host.loadavg.1-min", [$t, $1]];
     push @{$data}, ["docker.host.loadavg.5-min", [$t, $2]];
     push @{$data}, ["docker.host.loadavg.10-min", [$t, $3]];
-    push @{$data}, ["docker.host.processes.active.count", [$t, $4]];
-    push @{$data}, ["docker.host.processes.total.count", [$t, $5]];
+    push @{$data}, ["docker.host.processes.active", [$t, $4]];
+    push @{$data}, ["docker.host.processes.total", [$t, $5]];
 
   } elsif($line =~ /^docker.host.iostat\s+(.*)/) {
     if($1 =~ /^avg-cpu:/) {
