@@ -3,7 +3,6 @@ MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN apt-get -y update
 RUN apt-get -y install git \
-                       gunicorn \
                        python-django \
                        python-django-tagging \
                        python-simplejson \
@@ -23,6 +22,9 @@ RUN git clone https://github.com/graphite-project/whisper.git
 RUN cd whisper && git checkout master && python setup.py install
 RUN cd carbon && git checkout 0.9.x && python setup.py install
 RUN cd graphite-web && git checkout 0.9.x && python check-dependencies.py; python setup.py install
+
+# make use of cache from dockerana/carbon
+RUN apt-get -y install gunicorn
 
 RUN mkdir -p /opt/graphite/webapp
 WORKDIR /opt/graphite/webapp
