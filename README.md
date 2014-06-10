@@ -3,8 +3,6 @@
 
 * [Docker hackathon/dockercon14 slides](http://dockerana.com/slides.html)
 
-<script type="text/javascript" src="https://asciinema.org/a/10047.js" id="asciicast-10047" async></script>
-
 Overview:
 
 * time series docker instrumentation and visualization
