@@ -11,7 +11,8 @@ my $t0;
 my $t1;
 
 # setup syslog reader
-$cmd = "tail -f /tmp/log/syslog | /usr/local/bin/ingest.pl";
+$cmd = "tail -f /tmp/log/syslog | /usr/local/bin/ingest.pl &";
+$out = `$cmd`;
 
 /usr/local/bin/
 while(1) {
