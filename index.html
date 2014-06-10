@@ -34,13 +34,9 @@
 
 <ul>
 <li><a href="http://dockerana.com/slides.html">Docker hackathon/dockercon14 slides</a></li>
+</ul><p>Deom of build/startup:</p>
 
-<p>Demo of dockerana building the necessary containers, starting them, and then stopping them using Docker 1.0:</p>
-
-<script type="text/javascript" src="https://asciinema.org/a/10047.js" id="asciicast-10047" async data-autoplay="1"></script>
-
-  
-</ul><p>Overview:</p>
+<p>Overview:</p>
 
 <ul>
 <li>time series docker instrumentation and visualization</li>
@@ -52,14 +48,15 @@
 <a name="initial-setup-" class="anchor" href="#initial-setup-"><span class="octicon octicon-link"></span></a>Initial setup :</h4>
 
 <ul>
-<li>disclaimer about logs &amp; disk space (upstart will rotate/etc; but growth of backend, etc.)</li>
-<li>assumes ipv4 only at this point</li>
-</ul><p>Ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):</p>
+<li>Obligatory disclaimer about logs &amp; disk space... upstart will rotate/etc; but growth of backend, will just keep going, if you fill your docker host things will be bad</li>
+<li>Everything in this setup assumes ipv4 only at this point (FIXME)</li>
+</ul><p>Instructions below are for Ubuntu 14.04, assuming a vanilla/patched
+install with rsyslog running.</p>
 
 <p>Official install from <a href="http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit">http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit</a></p>
 
 <pre><code>sudo apt-get update
-sudo apt-get install docker.io
+sudo apt-get install -y docker.io
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 </code></pre>
@@ -82,14 +79,16 @@ sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2&gt;&amp;1 | logger -t d
 
 </code></pre>
 
-<p>Go ahead and start docker:</p>
+<p>Go ahead and re-start docker:</p>
 
-<pre><code>sudo service docker.io start
+<pre><code>sudo service docker.io restart
 </code></pre>
 
-<p>To build:</p>
+<p>To build dockerana:</p>
 
-<pre><code>./build
+<pre><code>git clone https://github.com/dockerana/dockerana.git
+cd dockerana
+./build
 </code></pre>
 
 <p>To start:</p>
