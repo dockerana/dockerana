@@ -43,7 +43,7 @@ Make these changes :
 
 ```
 printf "\n# Added for dockerana log aggregation\nDOCKER_OPTS=\" -D\"\n" | sudo tee -a /etc/default/docker.io > /dev/null
-sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2>&1 | logger -t docker\n\tnetstat --interfaces -c | logger -t netstat &/' docker.io.conf
+sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2>&1 | logger -t docker\n\tnetstat --interfaces -c | logger -t netstat &/' /etc/init/docker.io.conf
 
 ```
 
