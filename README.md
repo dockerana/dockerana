@@ -13,16 +13,17 @@ Overview:
 
 #### Initial setup :
 
-* disclaimer about logs & disk space (upstart will rotate/etc; but growth of backend, etc.)
-* assumes ipv4 only at this point
+* Obligatory disclaimer about logs & disk space... upstart will rotate/etc; but growth of backend, will just keep going, if you fill your docker host things will be bad
+* Everything in this setup assumes ipv4 only at this point (FIXME)
 
-Ubuntu 14.04 (assumes vanilla install w/ rsyslog, etc.):
+Instructions below are for Ubuntu 14.04, assuming a vanilla/patched
+install with rsyslog running.
 
 Official install from http://docs.docker.io/installation/ubuntulinux/#ubuntu-trusty-1404-lts-64-bit
 
 ```
 sudo apt-get update
-sudo apt-get install docker.io
+sudo apt-get install -y docker.io
 sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
 ```
@@ -47,15 +48,17 @@ sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2>&1 | logger -t docker\n
 
 ```
 
-Go ahead and start docker:
+Go ahead and re-start docker:
 
 ```
-sudo service docker.io start
+sudo service docker.io restart
 ```
 
-To build:
+To build dockerana:
 
 ```
+git clone https://github.com/dockerana/dockerana.git
+cd dockerana
 ./build
 ```
 
