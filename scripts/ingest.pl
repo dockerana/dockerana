@@ -96,10 +96,10 @@ while($line = <>) {
 
   } elsif($line =~ /^docker.host.loadavg\s+([\d\.]+)\s+([\d\.]+)\s+([\d\.]+)\s+(\d+)\/(\d+)\s/) {
     Net::Statsd::gauge('docker.host.loadavg.1-min', $1);
-    Net::Statsd::gauge('docker.host.loadavg.5-min', $1);
-    Net::Statsd::gauge('docker.host.loadavg.10-min', $1);
-    Net::Statsd::gauge('docker.host.processes.active', $1);
-    Net::Statsd::gauge('docker.host.processes.total', $1);
+    Net::Statsd::gauge('docker.host.loadavg.5-min', $2);
+    Net::Statsd::gauge('docker.host.loadavg.10-min', $3);
+    Net::Statsd::gauge('docker.host.processes.active', $4);
+    Net::Statsd::gauge('docker.host.processes.total', $5);
 
   } elsif($line =~ /^docker.host.iostat\s+(.*)/) {
     if($1 =~ /^avg-cpu:/) {
