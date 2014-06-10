@@ -14,7 +14,6 @@ my $t1;
 $cmd = "tail -f /tmp/log/syslog | /usr/local/bin/ingest.pl &";
 $out = `$cmd`;
 
-/usr/local/bin/
 while(1) {
   ($t0,$t1) = gettimeofday();
   $d1 = 1000000 - $t1;
