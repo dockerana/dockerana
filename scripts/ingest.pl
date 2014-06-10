@@ -7,14 +7,11 @@ use Data::Dumper;
 
 use Net::Statsd;
 
-my $carbon_port;
-my $carbon_server;
 my $grabnext;
 my %grabnext_h;
 my $i;
 my $line;
 my @parts;
-my $sock;
 
 $| = 0;
 
