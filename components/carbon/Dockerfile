@@ -3,8 +3,8 @@ MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN apt-get -y update
 RUN apt-get -y install git \
-                       python-django-tagging \
                        python-django \
+                       python-django-tagging \
                        python-simplejson \
                        python-memcache \
                        python-ldap \
