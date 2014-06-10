@@ -1,7 +1,8 @@
 [dockerana](http://dockerana.com/)
 =========
 
-* [Docker hackathon/dockercon14 slides](http://dockerana.com/slides.html)
+* [Docker hackathon slides](http://dockerana.com/slides.html)
+* [Docker dockercon14 slides](http://dockerana.com/demo.html)
 
 Overview:
 
