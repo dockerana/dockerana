@@ -72,7 +72,7 @@ sudo chmod 755 /usr/bin/docker.io
 <p>(FIXME deal with situation where pre-existing docker_opts exist/ordering/etc)</p>
 
 <pre><code>printf "\n# Added for dockerana log aggregation\nDOCKER_OPTS=\" -D\"\n" | sudo tee -a /etc/default/docker.io &gt; /dev/null
-sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2&gt;&amp;1 | logger -t docker\n\tnetstat --interfaces -c | logger -t netstat &amp;/' docker.io.conf
+sudo perl -pi -e 's/(\"\$DOCKER\" -d \$DOCKER_OPTS)/$1 2&gt;&amp;1 | logger -t docker\n\tnetstat --interfaces -c | logger -t netstat &amp;/' /etc/init/docker.io.conf
 
 </code></pre>
 
