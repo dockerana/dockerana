@@ -14,7 +14,7 @@ Overview:
 
 #### Initial setup :
 
-* Obligatory disclaimer about logs & disk space... upstart will rotate/etc; but growth of backend, will just keep going, if you fill your docker host things will be bad
+* Obligatory disclaimer about logs & disk space... upstart will rotate/etc; but growth of backend, will just keep going. Don't let your docker host run out of space!
 * Everything in this setup assumes ipv4 only at this point (FIXME)
 
 Instructions below are for Ubuntu 14.04, assuming a vanilla/patched
