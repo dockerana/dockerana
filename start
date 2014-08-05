@@ -11,8 +11,9 @@ echo "starting carbon . . ."
 docker kill dockerana-carbon >/dev/null 2>&1
 docker rm dockerana-carbon >/dev/null 2>&1
 docker run -d \
-           -p 2004:2004 \
            -p 7002:7002 \
+           -p 2003:2003 \
+           -p 2004:2004 \
            -v /opt/graphite \
            --name dockerana-carbon dockerana/carbon
 
@@ -44,7 +45,7 @@ docker run -d -P --name dockerana-grafana dockerana/grafana
 echo "starting docker host syslog ingest . . ."
 docker kill dockerana >/dev/null 2>&1
 docker rm dockerana >/dev/null 2>&1
-docker run -d -v /var/log:/tmp/log:ro --link dockerana-statsd:statsd --name dockerana dockerana/dockerana
+docker run -d -v /var/log:/tmp/log:ro --link dockerana-statsd:statsd --name dockerana -e HOSTNAME=`hostname` dockerana/dockerana
 
 PORT=`docker ps | grep dockerana-grafana | sed -e 's/.*://' | sed -e 's/\-.*//'`
 HOST=`/usr/bin/env | grep DOCKER_HOST | perl -pe 's/.*\/([0-9\.]+):.*/$1/'`

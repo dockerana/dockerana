@@ -4,11 +4,15 @@ use warnings;
 use strict;
 use Time::HiRes qw(gettimeofday usleep);
 
+use Env qw(@HOSTNAME);
+
 my $cmd;
 my $d1;
 my $out;
 my $t0;
 my $t1;
+
+
 
 while(1) {
   ($t0,$t1) = gettimeofday();
