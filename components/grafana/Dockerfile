@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM debian:wheezy
 MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN apt-get -y update
@@ -8,9 +8,9 @@ RUN apt-get -y install python \
 RUN mkdir /src
 
 # grafana
-RUN wget http://grafanarel.s3.amazonaws.com/grafana-1.5.3.tar.gz
-RUN tar xzvf grafana-1.5.3.tar.gz && rm grafana-1.5.3.tar.gz
-RUN mv grafana-1.5.3 /src/grafana
+RUN wget http://grafanarel.s3.amazonaws.com/grafana-1.9.0.tar.gz
+RUN tar xzvf grafana-1.9.0.tar.gz && rm grafana-1.9.0.tar.gz
+RUN mv grafana-1.9.0 /src/grafana
 
 # config file
 ADD config.js /src/grafana/config.js

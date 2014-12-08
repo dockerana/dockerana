@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM debian:wheezy
 MAINTAINER Charlie Lewis <charliel@lab41.org>
 
 RUN apt-get -y update
